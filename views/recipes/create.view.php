@@ -7,8 +7,12 @@
             <form action="/recipes" method="POST">
                 <label for="title">Title</label><br>
                 <input type="text" name="title" id="name"><br><br>
+                
                 <label for="title">Receta</label><br>
                 <textarea name="body" id="body" rows="3"></textarea><br><br>
+
+                <label for="tags">Etiquetas: separaradas por comas ","</label>
+                <input type="text" name="tags" id="tags" placeholder="parrilla, asado, carne">
 
                 <button type="submit">Crear</button>
             </form>
