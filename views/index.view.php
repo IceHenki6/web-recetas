@@ -1,6 +1,6 @@
 
 <?php require('partials/head.php') ?>
-
+<?php require base_path('views/partials/navbar.php') ?>
 
 
     <main>
