@@ -1,20 +1,149 @@
+/*--basic setup--*/
 *,::before,::after{
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6, p{
+*{
     margin: 0;
     padding: 0;
+    font: inherit;
 }
   
-  
+ul[role="list"],
+ol[role="list"] {
+    list-style: none;
+    list-style-type: none;
+}
+
+ul {
+    list-style: none;
+    list-style-type: none;
+}
+
+:root {
+    --fw-regular : 400;
+    --fw-semi-bold : 500;
+    --fw-bold : 700;
+
+    --fs-300 : .8125rem;
+    --fs-400 : .875rem;
+    --fs-500 :  1rem;
+    --fs-600 : 1.875rem;
+    --fs-700 : 2.5rem;
+
+    --red : rgb(226, 82, 82);
+    --light-red : rgba(226, 82, 82, 0.827);
+    --white : white;
+    --gray: rgb(65, 65, 65);
+
+    --border-radius : 5px;
+}
+
+@media (min-width: 50em) {
+    :root {
+        --fs-600 : 3.5rem;
+        --fs-700 : 2.5rem;
+    }
+}
+
+html,
+body {
+    height: 100%;
+    color: var(--gray);
+    background-color: var(--white);
+}
+
 body{
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: pink;
+    text-rendering: optimizeSpeed;
 }
 
-nav{
-    background-color: red;
+img,
+picture {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*--Main styling--*/
+
+.container {
+    --max-width: 1110px;
+    --h-padding: 1rem;
+
+    width: min(var(--max-width), 100% - (var(--h-padding) * 2));
+    margin-inline: auto;
+}
+
+
+/*navbar*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: var(--fs-500);
+    height: 60px;
+}
+.nav-list{
+    display: flex;
+    gap: .8rem;    
+}
+
+.nav-item {
+    position: relative;
+    padding: 8px;
+    /* border-radius: 5px; */
+    
+}
+
+.nav-item:hover::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 4px; 
+    width: 25px; 
+    height: 4px; 
+    background-color: rgb(193, 193, 193);
+    border-radius: 5px;  
+}
+
+.nav-active::after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 4px; 
+    width: 25px; 
+    height: 4px; 
+    background-color: var(--red);
+    border-radius: 5px; 
+}
+
+#log-in{
+    color: var(--red);
+    font-weight: var(--fw-bold);
+    text-decoration: underline;
+    font-size: var(--fs-500);
+    margin-right: 10px;
+}
+
+#log-in:hover{
+    color: var(--light-red);
+}
+
+.primary-button {
+    background-color: var(--red);
+    color: var(--white);
+    border-radius: var(--border-radius);
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-button:hover{
+    background-color: var(--light-red);
 }

@@ -15,31 +15,65 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $tags = array_map('trim', $tags);
     $tags = array_map('strtolower', $tags);
 
+    $imagePath = null;
+
     //dd($tags);
 
     if (! Validator::string($_POST['body'], 1, 5000)) {
-        $errors['body'] = 'A body of no more than 5000 characters is required';
+        $errors['body'] = 'Necesita llenar el campo de la receta y no debe ser de mas de 5000 caracteres';
     }
 
     if(! Validator::string($_POST['title'], 1, 255)) {
-        $errors['title'] = 'A title of no more than 255 characters is required';
+        $errors['title'] = 'Un título de no más de 255 caracteres es requerido.';
     }
 
     if(! Validator::tags($tags, 10)) {
-        $errors['tags'] = 'A maximum number of tags allowed is 10';
+        $errors['tags'] = 'El número máximo de etiquetas permitido es de 10 etiquetas.';
+    }
+
+    // dd($_FILES['image']);
+
+    if (! Validator::image($_FILES['image'])) {
+        $errors['image'] = 'Ocurrió un error al subir la imagen.';
+    }
+
+    if (! Validator::imageSize($_FILES['image'])) {
+        $errors['image'] = 'Límite máximo de tamaño de imagen superado, el tamaño máximo de la imagen debe ser de 2 mb.'; 
+    }
+
+    if (! Validator::imageType($_FILES['image'])) {
+        $errors['image'] = 'Formato no permitido, el archivo subido debe ser una imagen.'; 
     }
 
     if (!empty($errors)) {
         return view("recipes/create.view.php", [
-            'heading' => 'Create Recipe',
+            'heading' => 'Crea tu Receta',
             'errors' => $errors
         ]);
     }
 
-    $recipeId = $db->query('INSERT INTO recipes(title, body, user_id) VALUES(:title, :body, :user_id)', [
+    //upload the image
+    $targetDir = base_path('uploads');
+
+    $targetFile = $targetDir . '/' . uniqid() . "_" . basename($_FILES['image']['name']);
+
+    if (move_uploaded_file($_FILES['image']['tmp_name'], $targetFile)) {
+        $imagePath = $targetFile;  
+    } else {
+        $errors['image'] = "Ha ocurrido un error al subir la imagen";
+        return view("recipes/create.view.php", [
+            'heading' => 'Crear tu Receta',
+            'errors' => $errors
+        ]);
+    }
+
+
+
+    $recipeId = $db->query('INSERT INTO recipes(title, body, user_id, image_path) VALUES(:title, :body, :user_id, :image_path)', [
         'title' => $_POST['title'],
         'body' => $_POST['body'],
-        'user_id' => 1
+        'user_id' => 1,
+        'image_path' => $imagePath
     ])->connection->lastInsertId();
 
 
