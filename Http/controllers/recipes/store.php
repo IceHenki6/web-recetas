@@ -17,8 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $imagePath = null;
 
-    //dd($tags);
 
+    //dd($tags);
+    //validate title, body, and tags
     if (! Validator::string($_POST['body'], 1, 5000)) {
         $errors['body'] = 'Necesita llenar el campo de la receta y no debe ser de mas de 5000 caracteres';
     }
@@ -31,8 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['tags'] = 'El número máximo de etiquetas permitido es de 10 etiquetas.';
     }
 
-    // dd($_FILES['image']);
-
+    //validate image
     if (! Validator::image($_FILES['image'])) {
         $errors['image'] = 'Ocurrió un error al subir la imagen.';
     }
@@ -43,6 +43,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (! Validator::imageType($_FILES['image'])) {
         $errors['image'] = 'Formato no permitido, el archivo subido debe ser una imagen.'; 
+    }
+
+    //validate category
+    $category = $db->query("SELECT * FROM categories WHERE id = :id", [
+        'id' => $_POST['category-selector']
+    ]);
+
+    if (! isset($category)) {
+        $errors['category'] = 'Se debe seleccionar una categoría disponible';
+    }
+
+    //validate difficulty
+    $difficulty = $db->query("SELECT * FROM difficulty WHERE id = :id", [
+        'id' => $_POST['difficulty-selector']
+    ]);
+
+    if (! isset($difficulty)) {
+        $errors['difficulty'] = 'Se debe seleccionar una dificultad disponible';
+    }
+
+    //validate duration
+    $duration = $db->query("SELECT * FROM duration WHERE id = :id", [
+        'id' => $_POST['duration-selector']
+    ]);
+
+    if (! isset($duration)) {
+        $errors['duration'] = 'Se debe seleccionar una duración disponible';
     }
 
     if (!empty($errors)) {
@@ -69,11 +96,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    $recipeId = $db->query('INSERT INTO recipes(title, body, user_id, image_path) VALUES(:title, :body, :user_id, :image_path)', [
+    $recipeId = $db->query('INSERT INTO recipes(title, body, user_id, image_path, category_id, difficulty_id, duration_id) 
+        VALUES(:title, :body, :user_id, :image_path, :category_id, :difficulty_id, :duration_id)', [
         'title' => $_POST['title'],
         'body' => $_POST['body'],
         'user_id' => 1,
-        'image_path' => $imagePath
+        'image_path' => $imagePath,
+        'category_id' => $_POST['category-selector'],
+        'difficulty_id' => $_POST['difficulty-selector'],
+        'duration_id' => $_POST['duration-selector']
     ])->connection->lastInsertId();
 
 
