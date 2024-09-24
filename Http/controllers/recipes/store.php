@@ -53,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     //upload the image
-    $targetDir = base_path('uploads');
+    $targetDir = 'uploads';
 
     $targetFile = $targetDir . '/' . uniqid() . "_" . basename($_FILES['image']['name']);
 

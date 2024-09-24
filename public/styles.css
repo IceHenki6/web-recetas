@@ -60,6 +60,10 @@ body{
     text-rendering: optimizeSpeed;
 }
 
+main {
+    height: 100%;
+}
+
 img,
 picture {
     max-width: 100%;
@@ -146,4 +150,36 @@ a {
 
 .primary-button:hover{
     background-color: var(--light-red);
+}
+
+/* recipes list */
+.recipes-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* grid-template-rows: minmax(200px, auto); */
+    grid-auto-rows: 300px;
+    grid-gap: 10px;
+}
+/* recipe card */
+
+.recipe-card {
+    display: flex;
+    flex-direction: column;
+    /* width: 300px; */
+}
+
+.recipe-card__image {
+    /* height: 220px; */
+    height: 80%;
+    object-fit: cover;
+} 
+
+.test-item{
+    background-color: teal;
+}
+
+.recipe-card__title {
+    padding: 10px 0;
+    font-size: var(--fs-500);
+    font-weight: var(--fw-bold);
 }

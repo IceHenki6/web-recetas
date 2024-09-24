@@ -14,13 +14,20 @@
             </select>
             <button type="submit">Buscar</button>
         </form>
-        <ul>
+        <div class="container recipes-list">
             <?php foreach ($recipes as $recipe) : ?>
-                <li>
-                    <a href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
-                </li>
+                <div class="recipe-card">
+                    <img class="recipe-card__image" src="<?= $recipe['image_path']?>" alt="imagen representativa de un <?= $recipe['title']?>">
+                    <a class="recipe-card__title" href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
+                </div>
             <?php endforeach; ?>
-        </ul>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+            <div class="test-item"></div>
+        </div>
     </div>
 </main>
 <?php require base_path('views/partials/foot.php') ?>
