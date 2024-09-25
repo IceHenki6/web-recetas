@@ -11,7 +11,7 @@
         </nav>
     </div>
 
-    <div>
+    <div class="navbar-auth">
         <a href="/login" id="log-in">Iniciar Sesión</a>
         <a href="/register" class="primary-button">Registrarse</a>
     </div>
