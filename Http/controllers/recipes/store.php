@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $recipeId = $db->query('INSERT INTO recipes(title, body, user_id, image_path, category_id, difficulty_id, duration_id) 
         VALUES(:title, :body, :user_id, :image_path, :category_id, :difficulty_id, :duration_id)', [
         'title' => $_POST['title'],
-        'body' => $_POST['body'],
+        'body' => strip_tags($_POST['body'], getAllowedTags()),
         'user_id' => 1,
         'image_path' => $imagePath,
         'category_id' => $_POST['category-selector'],

@@ -48,3 +48,9 @@ function redirect($path)
     header("location: {$path}");
 }
 
+function getAllowedTags()
+{
+    $tags = ['p','b','b', 'strong', 'i', 'em', 'u', 'ul', 'ol', 'li', 'a', 
+            'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'br', 'blockquote', 'pre', 'table', 'tr', 'td', 'th'];
+    return $tags;
+}

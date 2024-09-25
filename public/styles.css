@@ -21,6 +21,7 @@ ul {
 }
 
 :root {
+    --fw-semi-light: 300;
     --fw-regular : 400;
     --fw-semi-bold : 500;
     --fw-bold : 700;
@@ -35,6 +36,7 @@ ul {
     --light-red : rgba(226, 82, 82, 0.827);
     --white : white;
     --gray: rgb(65, 65, 65);
+    --light-gray: rgb(238, 238, 238);
 
     --border-radius : 5px;
 }
@@ -181,5 +183,89 @@ a {
 .recipe-card__title {
     padding: 10px 0;
     font-size: var(--fs-500);
+    font-weight: var(--fw-bold);
+}
+
+/* Create recipe */
+.create-recipe__title{
+    font-size: var(--fs-600);
+}
+
+.create-recipe__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+.input-text__container {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+}
+
+.input-text__container label {
+    font-size: var(--fs-500);
+    font-weight: var(--fw-bold);
+}
+
+.input-text__container input {
+    max-width: 400px;
+    padding: 5px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--light-gray);
+}
+
+.select-containers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.input-select__container {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-between;
+    max-width: 600px;
+}
+
+.input-select__container label {
+    font-weight: var(--fw-bold);
+}
+
+.select-box {
+    border: none;
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+    padding: 5px;
+    cursor: pointer;
+    width: 350px;
+    font-weight: var(--fw-semi-light);
+}
+
+.input-image__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-image__container label {
+    font-weight: var(--fw-bold);
+}
+
+.create-recipe__form button {
+    width: 350px;
+}
+
+.recipe-body__container{
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.recipe-body__container label {
+    gap: 5px;
     font-weight: var(--fw-bold);
 }
