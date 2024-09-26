@@ -32,9 +32,13 @@ if (!empty($errors)) {
     ]);
 }
 
-$db->query('UPDATE recipes SET title = :title, body = :body WHERE id = :id', [
+$db->query('UPDATE recipes SET title = :title, body = :body, category_id = :category_id, 
+                    difficulty_id = :difficulty_id, duration_id = :duration_id  WHERE id = :id', [
     'title' => $_POST['title'],
     'body' => $_POST['body'],
+    'category_id' => $_POST['category-selector'],
+    'difficulty_id' => $_POST['difficulty-selector'],
+    'duration_id' => $_POST['duration-selector'],
     'id' => $_POST['id']
 ]);
 header('location: /recipes');

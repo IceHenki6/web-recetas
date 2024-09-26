@@ -412,6 +412,10 @@ a {
     background-color: var(--light-gray);
 }
 
+.recipes-list {
+    padding: 20px 0 ;
+}
+
 /* login and register*/
 
 .auth {
@@ -448,3 +452,10 @@ a {
     background-color: var(--light-gray);
     width: 100%;
 }
+
+/* edit */
+.edit-recipe__controls {
+    display: flex;
+    gap: 20px;
+}
+

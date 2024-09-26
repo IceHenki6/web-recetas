@@ -16,4 +16,4 @@ $router->post('/recipes', 'recipes/store.php')->only('auth');
 $router->get('/recipe', 'recipes/show.php');
 $router->get('/recipe/edit', 'recipes/edit.php')->only('auth');
 $router->patch('/recipe', 'recipes/update.php')->only('auth');
-$router->delete('/recipe', 'destroy.php')->only('auth');
+$router->delete('/recipe', 'recipes/destroy.php')->only('auth');

@@ -7,6 +7,7 @@ $db = App::resolve(Database::class);
 
 $currentUserId = $_SESSION['user']['user_id'];
 
+
 $recipe = $db->query("SELECT * FROM recipes WHERE id = :id", [
     'id' => $_POST['id']
   ])->findOrFail();
@@ -17,5 +18,5 @@ $db->query('DELETE FROM recipes WHERE id = :id', [
     'id' => $_POST['id']
 ]);
 
-header('location: /recipes');
+redirect('/recipes');
 exit();

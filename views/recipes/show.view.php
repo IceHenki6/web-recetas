@@ -36,26 +36,27 @@
 
 
         <div class="show-recipe__body"><?= $recipe['body'] ?></div>
-
-        <?php if (($_SESSION['user']['user_id'] ?? false === $recipe['user_id']) ) : ?>
-            <div class="show-recipe__controls">
-                <a class="secondary-button" href="/recipe/edit?id=<?= $recipe['id'] ?>">
-                    <span class="material-symbols-outlined">
-                        edit
-                    </span>
-                    Editar
-                </a>
-                <form action="/recipe" method="POST">
-                    <input type="hidden" name="_method" value="DELETE">
-                    <input type="hidden" name="id" value="<?= $recipe['id'] ?>">
-                    <button class="primary-button" type="submit">
+        <?php if ($_SESSION['user'] ?? false) : ?>
+            <?php if (($_SESSION['user']['user_id'] === $recipe['user_id'])) : ?>
+                <div class="show-recipe__controls">
+                    <a class="secondary-button" href="/recipe/edit?id=<?= $recipe['id'] ?>">
                         <span class="material-symbols-outlined">
-                            delete
+                            edit
                         </span>
-                        Borrar
-                    </button>
-                </form>
-            </div>
+                        Editar
+                    </a>
+                    <form action="/recipe" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="hidden" name="id" value="<?= $recipe['id'] ?>">
+                        <button class="primary-button" type="submit">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                            Borrar
+                        </button>
+                    </form>
+                </div>
+            <?php endif; ?>
         <?php endif; ?>
     </div>
 </main>
