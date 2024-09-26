@@ -6,7 +6,7 @@ use Core\Validator;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
+$currentUserId = $_SESSION['user']['user_id'];
 
 $recipe = $db->query("SELECT * FROM recipes WHERE id = :id", [
     'id' => $_POST['id']

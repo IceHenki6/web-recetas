@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         VALUES(:title, :body, :user_id, :image_path, :category_id, :difficulty_id, :duration_id)', [
         'title' => $_POST['title'],
         'body' => strip_tags($_POST['body'], getAllowedTags()),
-        'user_id' => 1,
+        'user_id' => $_SESSION['user']['user_id'],
         'image_path' => $imagePath,
         'category_id' => $_POST['category-selector'],
         'difficulty_id' => $_POST['difficulty-selector'],

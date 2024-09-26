@@ -1,20 +1,20 @@
 <?php require  base_path('views/partials/head.php') ?>
 
     <main>
-        <div class="">
-            <h1>Registrate</h1>
+        <div class="container auth">
+            <h1 class="auth-title">Registrate</h1>
 
-            <form action="/register" method="POST">
+            <form class="auth-form" action="/register" method="POST">
                 <label for="name">Nombre</label><br>
-                <input type="text" name="name" id="name"><br><br>
+                <input type="text" name="name" id="name" placeholder="Nombre" required><br><br>
                 
                 <label for="email">Email</label><br>
-                <input type="email" name="email" id="email"><br><br>
+                <input type="email" name="email" id="email" placeholder="email@email.com" required><br><br>
 
                 <label for="password">Contraseña</label><br>
-                <input type="password" name="password" id="password"><br><br>
+                <input type="password" name="password" id="password" required><br><br>
 
-                <button type="submit">Registrarse</button>
+                <button class="primary-button" type="submit">Registrarse</button>
             </form>
         </div>
     </main>

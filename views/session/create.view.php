@@ -1,18 +1,18 @@
 <?php require  base_path('views/partials/head.php') ?>
 
 <main>
-    <div class="">
-        <h1>Iniciar Sesión</h1>
+    <div class="container auth">
+        <h1 class="auth-title">Iniciar Sesión</h1>
 
-        <form action="/session" method="POST">
+        <form class="auth-form" action="/session" method="POST">
 
             <label for="email">Email</label><br>
-            <input type="email" name="email" id="email"><br><br>
+            <input type="email" name="email" id="email" placeholder="email@email.com" required><br><br>
 
             <label for="password">Contraseña</label><br>
-            <input type="password" name="password" id="password"><br><br>
+            <input type="password" name="password" id="password" required><br><br>
 
-            <button type="submit">Iniciar Sesión</button>
+            <button class="primary-button" type="submit">Iniciar Sesión</button>
         </form>
     </div>
 </main>
