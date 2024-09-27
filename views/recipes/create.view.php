@@ -9,6 +9,9 @@
             <div class="input-text__container">
                 <label for="title">Título</label>
                 <input type="text" name="title" id="name" placeholder="Ingresa un título" required>
+                <?php if (isset($errors['title'])) : ?>
+                    <p class="error-message"><?= $errors['title'] ?></p>
+                <?php endif; ?>
             </div>
 
 
@@ -22,6 +25,9 @@
                             <option value="<?= $category['id'] ?>"><?= $category['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php if (isset($errors['category'])) : ?>
+                        <p class="error-message"><?= $errors['category'] ?></p>
+                    <?php endif; ?>
                 </div>
                 <div class="input-select__container">
                     <label for="difficulty-selector">Seleccionar dificultad: </label>
@@ -31,6 +37,9 @@
                             <option value="<?= $difficulty['id'] ?>"><?= $difficulty['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php if (isset($errors['difficulty'])) : ?>
+                        <p class="error-message"><?= $errors['difficulty'] ?></p>
+                    <?php endif; ?>
                 </div>
 
 
@@ -43,7 +52,12 @@
                             <option value="<?= $duration['id'] ?>"><?= $duration['name'] ?></option>
                         <?php endforeach; ?>
                     </select>
+                    <?php if (isset($errors['duration'])) : ?>
+                        <p class="error-message"><?= $errors['duration'] ?></p>
+                    <?php endif; ?>
                 </div>
+
+
             </section>
 
             <div class="recipe-body__container">
@@ -51,11 +65,17 @@
                 <div id="editor"></div>
                 <input type="hidden" name="body" id="body-content">
             </div>
+            <?php if (isset($errors['body'])) : ?>
+                <p class="error-message"><?= $errors['body'] ?></p>
+            <?php endif; ?>
 
 
             <div class="input-text__container">
                 <label for="tags">Etiquetas: separaradas por comas ","</label>
                 <input type="text" name="tags" id="tags" placeholder="parrilla, asado, carne">
+                <?php if (isset($errors['tags'])) : ?>
+                    <p class="error-message"><?= $errors['tags'] ?></p>
+                <?php endif; ?>
             </div>
 
 
@@ -63,12 +83,27 @@
                 <label for="image">Subir una Imagen</label>
                 <input type="file" name="image" accept="image/*" required>
                 <?php if (isset($errors['image'])) : ?>
-                    <p class="text-red-500 text-xs mt-2"><?= $errors['image'] ?></p>
+                    <p class="error-message"><?= $errors['image'] ?></p>
                 <?php endif; ?>
             </div>
 
             <button class="primary-button" type="submit">Crear</button>
         </form>
     </div>
+
+    <script>
+        const quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+
+
+        const recipeForm = document.getElementById('create-recipe__form')
+
+
+        recipeForm.onsubmit = () => {
+            const recipeBodyContent = document.getElementById('body-content')
+            recipeBodyContent.value = quill.root.innerHTML;
+        }
+    </script>
 </main>
 <?php require base_path('views/partials/foot.php') ?>

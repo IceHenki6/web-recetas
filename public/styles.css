@@ -39,11 +39,17 @@ ul {
     --fs-600 : 1.875rem;
     --fs-700 : 2.5rem;
 
-    --red : rgb(226, 82, 82);
-    --light-red : rgba(226, 82, 82, 0.827);
+    --fs-mid : 1.5rem;
+
+    --red : #e25252;
+    --light-red : #e25252d3;
     --white : white;
-    --gray: rgb(74, 74, 74);
-    --light-gray: rgb(240, 240, 240);
+    /* --gray: rgb(74, 74, 74); */
+    --gray : #635656;
+    --brown: #8E6262;
+    --light-gray: #f0f0f0;
+
+    --navbar-height: 60px;
 
     --border-radius : 5px;
 }
@@ -109,7 +115,7 @@ a {
     justify-content: space-between;
     align-items: center;
     font-size: var(--fs-500);
-    height: 70px;
+    height: var(--navbar-height);
 }
 .nav-list{
     display: flex;
@@ -337,6 +343,7 @@ a {
     /* width: 450px; */
     height: 100%;
     flex: 2;
+    object-fit: cover;
 }
 
 .info-container {
@@ -459,3 +466,108 @@ a {
     gap: 20px;
 }
 
+/* landing-page */
+
+.hero-container {
+    height: calc(100vh - var(--navbar-height));
+    display: flex;
+    flex-direction: row;
+}
+
+.hero{
+    flex: .9;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+    padding-right: 10px;
+}
+
+.hero-title {
+    font-size: var(--fs-600);
+    font-weight: var(--fw-semi-bold);
+    line-height: 1.1em;
+}
+
+.hero-text{
+    font-size: var(--fs-500);
+    line-height: 1.8em;
+}
+
+.highlight-name {
+    color: var(--brown);
+    font-weight: var(--fw-bold);
+}
+
+#hero-button {
+    width: 250px;
+}
+
+.hero-images {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 
+        "one two"
+        "one three";
+    gap: 5px;
+    padding: 10px 0;
+}
+
+.one {
+    grid-area: one;
+}
+
+.two {
+    grid-area: two;
+}
+.three {
+    grid-area: three;
+}
+
+.hero-img__container {
+    background-color: var(--light-gray);
+    border-radius: var(--border-radius);
+}
+
+.hero-img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--border-radius);
+}
+
+/* about */
+.about {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    padding-bottom: 10px;
+}
+
+.about-title{
+    font-size: var(--fs-600);
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.about-section h3{
+    font-size: var(--fs-mid);
+}
+
+.about-section ul{
+    list-style-type: disc;
+}
+
+.about-section li::marker {
+    color: var(--red);
+}
+
+/* error message */
+.error-message {
+    font-size: var(--fs-400);
+    color: var(--red);
+}

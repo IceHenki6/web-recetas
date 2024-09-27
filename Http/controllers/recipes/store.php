@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     //dd($tags);
     //validate title, body, and tags
-    if (! Validator::string($_POST['body'], 1, 5000)) {
+    if (! Validator::string($_POST['body'], 1, 20000)) {
         $errors['body'] = 'Necesita llenar el campo de la receta y no debe ser de mas de 5000 caracteres';
     }
 

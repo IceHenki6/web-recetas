@@ -1,12 +1,11 @@
 <div class="container navbar">
     <div>
         <nav>
-
             <ul class="nav-list">
                 <li class="<?= isUrl('/') ? 'nav-item nav-active' : 'nav-item' ?>"><a href="/">Inicio</a></li>
                 <li class="<?= isUrl('/recipes') ? 'nav-item nav-active' : 'nav-item' ?>"><a href="/recipes">Recetas</a></li>
                 <?php if ($_SESSION['user'] ?? false) : ?>
-                    <li class="<?= isUrl('/my-recipes') ? 'nav-item nav-active' : 'nav-item' ?>"><a href="#">Mis Recetas</a></li>
+                    <li class="<?= isUrl('/recipes/create') ? 'nav-item nav-active' : 'nav-item' ?>"><a href="/recipes/create">Crear Receta</a></li>
                 <?php endif; ?>
                 <li class="<?= isUrl('/about') ? 'nav-item nav-active' : 'nav-item' ?>"><a href="/about">Sobre Nosotros</a></li>
             </ul>

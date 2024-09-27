@@ -29,12 +29,6 @@
                     <a class="recipe-card__title" href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
                 </div>
             <?php endforeach; ?>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
-            <div class="test-item"></div>
         </div>
     </div>
 </main>
