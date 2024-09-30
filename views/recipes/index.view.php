@@ -43,7 +43,8 @@
                         class="recipe-card__image"
                         src="<?= $recipe['image_path'] ?>"
                         alt="imagen representativa de un 
-                        <?= $recipe['title'] ?>">
+                        <?= $recipe['title'] ?>"
+                    >
                     <a class="recipe-card__title" href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
                     <div class="details">
                         <div class="details-item">

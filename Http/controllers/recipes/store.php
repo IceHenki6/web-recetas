@@ -28,9 +28,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors['title'] = 'Un título de no más de 255 caracteres es requerido.';
     }
 
-    if(! Validator::tags($tags, 10)) {
-        $errors['tags'] = 'El número máximo de etiquetas permitido es de 10 etiquetas.';
-    }
+    // if(! Validator::tags($tags, 10)) {
+    //     $errors['tags'] = 'El número máximo de etiquetas permitido es de 10 etiquetas.';
+    // }
 
     //validate image
     if (! Validator::image($_FILES['image'])) {
@@ -94,9 +94,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         ]);
     }
 
-
-
-    $recipeId = $db->query('INSERT INTO recipes(title, body, user_id, image_path, category_id, difficulty_id, duration_id) 
+    $db->query('INSERT INTO recipes(title, body, user_id, image_path, category_id, difficulty_id, duration_id) 
         VALUES(:title, :body, :user_id, :image_path, :category_id, :difficulty_id, :duration_id)', [
         'title' => $_POST['title'],
         'body' => strip_tags($_POST['body'], getAllowedTags()),
@@ -105,28 +103,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'category_id' => $_POST['category-selector'],
         'difficulty_id' => $_POST['difficulty-selector'],
         'duration_id' => $_POST['duration-selector']
-    ])->connection->lastInsertId();
+    ]);
 
-
+    // add tags
     //loop over tags and check if they already exist, if not, add them to the tags table
-    foreach ($tags as $tag) {
-        $tagFound = $db->query('SELECT * FROM tags WHERE name = :name', [
-            'name' => $tag
-        ])->find();
+    // foreach ($tags as $tag) {
+    //     $tagFound = $db->query('SELECT * FROM tags WHERE name = :name', [
+    //         'name' => $tag
+    //     ])->find();
 
-        if (! $tagFound) {
-            $tagId = $db->query('INSERT INTO tags (name) VALUES(:name)', [
-                'name' => $tag
-            ])->connection->lastInsertId();
-        }
+    //     if (! $tagFound) {
+    //         $tagId = $db->query('INSERT INTO tags (name) VALUES(:name)', [
+    //             'name' => $tag
+    //         ])->connection->lastInsertId();
+    //     }
         
         
-        //link tag to recipe
-        $db->query('INSERT INTO recipes_tags (recipe_id, tag_id) VALUES(:recipe_id, :tag_id)', [
-            'recipe_id' => $recipeId,
-            'tag_id' => $tagId ?? $tagFound['id']
-        ]);
-    }
+    //     //link tag to recipe
+    //     $db->query('INSERT INTO recipes_tags (recipe_id, tag_id) VALUES(:recipe_id, :tag_id)', [
+    //         'recipe_id' => $recipeId,
+    //         'tag_id' => $tagId ?? $tagFound['id']
+    //     ]);
+    // }
 
     header('location: /recipes');
 

@@ -70,15 +70,6 @@
             <?php endif; ?>
 
 
-            <div class="input-text__container">
-                <label for="tags">Etiquetas: separaradas por comas ","</label>
-                <input type="text" name="tags" id="tags" placeholder="parrilla, asado, carne">
-                <?php if (isset($errors['tags'])) : ?>
-                    <p class="error-message"><?= $errors['tags'] ?></p>
-                <?php endif; ?>
-            </div>
-
-
             <div class="input-image__container">
                 <label for="image">Subir una Imagen</label>
                 <input type="file" name="image" accept="image/*" required>
