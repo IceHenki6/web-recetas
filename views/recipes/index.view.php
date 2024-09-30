@@ -13,21 +13,21 @@
                 </div>
 
                 <select class="select-box" name="select-category">
-                    <option value="" selected>--Selecciona una categoria--</option>
+                    <option value="" selected>--filtrar por categoria--</option>
                     <?php foreach ($categories as $category) : ?>
                         <option value="<?= $category['name'] ?>"><?= $category['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
 
                 <select class="select-box" name="select-difficulty">
-                    <option value="" selected>--Selecciona una dificultad--</option>
+                    <option value="" selected>--filtrar por dificultad--</option>
                     <?php foreach ($difficulties as $difficulty) : ?>
-                        <option value="<?= $dificulty['name'] ?>"><?= $dificulty['name'] ?></option>
+                        <option value="<?= $difficulty['name'] ?>"><?= $difficulty['name'] ?></option>
                     <?php endforeach; ?>
                 </select>
 
                 <select class="select-box" name="select-duration">
-                    <option value="" selected>--Selecciona una duración--</option>
+                    <option value="" selected>--filtrar por duración--</option>
                     <?php foreach ($durations as $duration) : ?>
                         <option value="<?= $duration['name'] ?>"><?= $duration['name'] ?></option>
                     <?php endforeach; ?>
@@ -45,7 +45,19 @@
                         alt="imagen representativa de un 
                         <?= $recipe['title'] ?>">
                     <a class="recipe-card__title" href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
-
+                    <div class="details">
+                        <div class="details-item">
+                            <span class="material-symbols-outlined">menu_book</span>
+                            <p><?= $recipe['category']?></p>  
+                        </div>
+                        <div class="details-item">
+                            <span class="material-symbols-outlined">timer</span>
+                            <p><?= $recipe['duration']?></p>  
+                        </div>
+                        <div class="details-item">
+                            <strong>Dificultad: </strong><?= $recipe['difficulty']?>
+                        </div>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
