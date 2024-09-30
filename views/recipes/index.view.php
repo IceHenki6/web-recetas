@@ -12,11 +12,25 @@
                     <input type="text" name="search" id="search" placeholder="Buscar...">
                 </div>
 
-                <select class="select-box" name="select">
+                <select class="select-box" name="select-category">
                     <option value="" selected>--Selecciona una categoria--</option>
-                    <option value="asado">asado</option>
-                    <option value="carne">carne</option>
-                    <option value="parrilla">parrilla</option>
+                    <?php foreach ($categories as $category) : ?>
+                        <option value="<?= $category['name'] ?>"><?= $category['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <select class="select-box" name="select-difficulty">
+                    <option value="" selected>--Selecciona una dificultad--</option>
+                    <?php foreach ($difficulties as $difficulty) : ?>
+                        <option value="<?= $dificulty['name'] ?>"><?= $dificulty['name'] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+                <select class="select-box" name="select-duration">
+                    <option value="" selected>--Selecciona una duración--</option>
+                    <?php foreach ($durations as $duration) : ?>
+                        <option value="<?= $duration['name'] ?>"><?= $duration['name'] ?></option>
+                    <?php endforeach; ?>
                 </select>
                 <button class="primary-button" type="submit">Buscar</button>
             </form>
@@ -25,8 +39,13 @@
         <div class="recipes-list">
             <?php foreach ($recipes as $recipe) : ?>
                 <div class="recipe-card">
-                    <img class="recipe-card__image" src="<?= $recipe['image_path'] ?>" alt="imagen representativa de un <?= $recipe['title'] ?>">
+                    <img
+                        class="recipe-card__image"
+                        src="<?= $recipe['image_path'] ?>"
+                        alt="imagen representativa de un 
+                        <?= $recipe['title'] ?>">
                     <a class="recipe-card__title" href="/recipe?id=<?= $recipe['id'] ?>"><?= htmlspecialchars($recipe['title']) ?></a>
+
                 </div>
             <?php endforeach; ?>
         </div>

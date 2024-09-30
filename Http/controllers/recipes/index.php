@@ -5,36 +5,42 @@ use Core\Database;
 
 $db = App::resolve(Database::class);
 
-$query = 'SELECT * FROM recipes';
+$categories = $db->query('SELECT * FROM categories')->findAll();
+$difficulties = $db->query('SELECT * FROM difficulty')->findAll();
+$durations = $db->query('SELECT * FROM duration')->findAll();
 
-if (isset($_GET['search']) || isset($_GET['select'])) {
-    if ($_GET['select'] !== '') {
-        $filter = "
-            INNER JOIN recipes_tags rt ON recipes.id = rt.recipe_id
-            INNER JOIN tags t ON rt.tag_id = t.id
-            WHERE 
-                t.name = :tag_name 
-                AND recipes.title LIKE :title
-        ";
-        $query .= $filter;
-        $recipes = $db->query($query, [
-            'tag_name' => $_GET['select'],
-            'title' => '%' . $_GET['search'] . '%'
-        ])->findAll();
+$query = "SELECT r.id, r.title, r.image_path, r.created_at, c.name AS category, d.name AS difficulty, dur.name AS duration
+            FROM recipes r
+            INNER JOIN difficulty d ON r.difficulty_id = d.id
+            INNER JOIN duration dur ON r.duration_id = dur.id
+            INNER JOIN categories c ON r.category_id = c.id
+            WHERE 1 = 1";
 
-        dd($recipes);
-    } else {
-        $filter = "
-            WHERE title LIKE :title
-        ";
-        $query .= $filter;
 
-        $recipes = $db->query($query, [
-            'title' => '%' . $_GET['search'] . '%',
-        ])->findAll();
+if (isset($_GET['search'])) {
+    $category = $_GET['select-category'];
+    $difficulty = $_GET['select-difficulty'];
+    $duration = $_GET['select-duration'];
 
-        dd($recipes);
+    $params = [];
+
+    //dd($category);
+    if($category !== "") {
+        $query .= " AND c.name = :category";
+        $params[':category'] = $category;
     }
+
+    if($difficulty !== "") {
+        $query .= " AND d.name = :difficulty";
+        $params[':difficulty'] = $difficulty;
+    }
+
+    if($duration !== "") {
+        $query .= " AND dur.name = :duration";
+        $params[':duration'] = $duration;
+    }
+
+    $recipes = $db->query($query, $params)->findAll();
 } else {
     $recipes = $db->query($query)->findAll();
 }
@@ -43,5 +49,8 @@ if (isset($_GET['search']) || isset($_GET['select'])) {
 
 view('recipes/index.view.php', [
     'heading' => 'Recetas',
-    'recipes' => $recipes
+    'recipes' => $recipes,
+    'categories' => $categories,
+    'difficulties' => $difficulties,
+    'durations' => $durations
 ]);
