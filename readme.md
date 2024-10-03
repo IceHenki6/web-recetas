@@ -19,6 +19,10 @@ En la página que muestra todas las recetas, los usuarios pueden, mediante una b
 ### 2.4 Rich text editor
 Los usuarios disponen de un editor de texto incorporado (QuillJs) que les permite dar formato al texto de la receta.
 
+![](/public/images/homepage.png)
+![](/public/images/recipes.png)
+![](/public/images/create-recipe.png)
+
 ## 3. Instalación
 ### 3.1 Clonar repositorio
 ```bash
