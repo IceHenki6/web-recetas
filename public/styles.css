@@ -68,6 +68,10 @@ body {
     background-color: var(--white);
 }
 
+#navbar-hamburger {
+    display: none;
+}
+
 body{
     margin: 0;
     padding: 0;
@@ -171,6 +175,10 @@ a {
     gap: 10px;
 }
 
+.navbar-mobile {
+    display: none;
+}
+
 /* buttons */
 
 .primary-button {
@@ -269,7 +277,7 @@ a {
     border-radius: var(--border-radius);
     padding: 5px;
     cursor: pointer;
-    width: 350px;
+    width: 250px;
     font-weight: var(--fw-semi-light);
 }
 
@@ -372,6 +380,7 @@ a {
 
 .all-recipes__filter form {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -385,6 +394,7 @@ a {
 .filter-search__container input {
     padding: 10px;
     height: 30px;
+    width: 250px;
     border: none;
     border-radius: var(--border-radius);
     background-color: var(--light-gray);
@@ -588,3 +598,112 @@ a {
     color: var(--red);
 }
 
+.visible {
+    display: flex !important;
+}
+
+/* mobile */
+@media (max-width: 50em) {
+    .hero-images {
+        display: none;
+    }
+
+    .nav-list {
+        display: none;
+    }
+
+    .navbar-auth {
+        display: none;
+    }
+
+    .navbar-mobile{
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-container{
+        display: none;
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        background-color: #ffffffa0;
+        top: 0;
+        right: 0;
+    }
+
+    .dropdown {
+        position: absolute;
+        width: 70%;
+        height: 100%;
+        background-color: var(--white);
+        right: 0;
+        padding: var(--navbar-height) 30px;
+    }
+
+    .dropdown .nav-list {
+        display: block;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .dropdown .nav-item{
+        padding: 10px 0;
+    }
+
+    .nav-active::after{
+        left: 0;
+    }
+
+    .dropdown .navbar-auth {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .dropdown .close-btn{
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-size: var(--fs-400);
+        font-weight: var(--fw-bold);
+        background-color: var(--white);
+        border: none;
+    }
+
+    #navbar-hamburger {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        background-color: var(--white);
+    }
+
+    .all-recipes__filter {
+        display: flex;
+        width: 100%;
+        flex-wrap: wrap;
+        height: auto;
+    }
+
+    .all-recipes__filter form{
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .recipes-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .select-box {
+        width: 100%;
+    }
+
+    .filter-search__container input {
+        width: 100%;
+    }
+
+    .select-containers {
+        flex-direction: column;
+    }
+}

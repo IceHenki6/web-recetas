@@ -111,10 +111,12 @@ CREATE TABLE `duration` (
 ```
 
 ## 5 Futuras mejoras
+- **Logo**: Implementar un logo que represente la pagina web
 - **Etiquetas**: Durante el desarrollo del proyecto se implementó parcialmente el uso de etiquetas para las recetas, el usuario podía agregar etiquetas que considere adecuadas para la misma, para que luego otros usuarios puedan buscar recetas mediante el uso de etiquetas. En la base de datos se implementaron las tablas correspondientes para funcionalidad. La funcionalidad de las etiquetas fue descartada debido a que de momento es considerada una complejidad innecesaria, pero más adelante se podría volver a implementar de una manera más eficiente y que mejore la experiencia de usuario
 - **Panel de administrador**: Un panel que permita a un usuario administrador agregar, editar, y eliminar tanto recetas como usuarios
 - **Perfiles de usuario**: Permitir a los usuarios agregar una foto de perfil y poder editar su información de perfil (nombre, e-mail)
-- **Califiación de recetas**: Permitir a los usuarios registrados dar una calificación a las recetas
+- **Califiación de recetas**: Permitir a los usuarios registrados dar una calificación a las recetas.
+- **Mejorar el diseño para dispositivos móbiles**
 
 
 
